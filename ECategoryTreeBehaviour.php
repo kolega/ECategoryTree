@@ -1,6 +1,6 @@
 <?php
 
-class CategoryTreeBehaviour extends CActiveRecordBehavior
+class ECategoryTreeBehaviour extends CActiveRecordBehavior
 {
     const ROOT_NODE_ID = 1;
     const ROOT_NODE_NAME = 'Корневой раздел';
