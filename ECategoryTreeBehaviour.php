@@ -58,8 +58,8 @@ class ECategoryTreeBehaviour extends CActiveRecordBehavior
         $this->buildCategoryList(
             array(
                 'children' => $tree,
-                'name' => CategoryTreeBehaviour::ROOT_NODE_NAME,
-                'id' => CategoryTreeBehaviour::ROOT_NODE_ID,
+                'name' => self::ROOT_NODE_NAME,
+                'id' => self::ROOT_NODE_ID,
             ),
             $list,
             0,
@@ -72,7 +72,7 @@ class ECategoryTreeBehaviour extends CActiveRecordBehavior
     {
         if( count($parentNode['children']) > 0 )
         {
-            $name = str_repeat(CategoryTreeBehaviour::REPEAT_STRING, $level) . ' ' . $parentNode['name'];
+            $name = str_repeat(self::REPEAT_STRING, $level) . ' ' . $parentNode['name'];
             $id = $parentNode['id'];
             if( $buildTree )
             {
@@ -96,7 +96,7 @@ class ECategoryTreeBehaviour extends CActiveRecordBehavior
         }
         else
         {
-            $name = str_repeat(CategoryTreeBehaviour::REPEAT_STRING, $level) . ' ' . $parentNode['name'];
+            $name = str_repeat(self::REPEAT_STRING, $level) . ' ' . $parentNode['name'];
             $listNode[$parentNode['id']] = $name;
         }
     }
@@ -115,8 +115,8 @@ class ECategoryTreeBehaviour extends CActiveRecordBehavior
         $this->buildCategoryByArrayTree(
             array(
                 'children' => $tree,
-                'name' => CategoryTreeBehaviour::ROOT_NODE_NAME,
-                'id' => CategoryTreeBehaviour::ROOT_NODE_ID,
+                'name' => self::ROOT_NODE_NAME,
+                'id' => self::ROOT_NODE_ID,
             ),
             $list,
             0
@@ -136,7 +136,7 @@ class ECategoryTreeBehaviour extends CActiveRecordBehavior
         {
             $name = "<b>{$name}</b>";
         }
-        $name = str_repeat(CategoryTreeBehaviour::REPEAT_STRING, $level) . ' ' . $name;
+        $name = str_repeat(self::REPEAT_STRING, $level) . ' ' . $name;
         $id = $parentNode['id'];
         array_push(
             $listNode,
@@ -182,7 +182,7 @@ class ECategoryTreeBehaviour extends CActiveRecordBehavior
         }
 
         $tree = array();
-        $this->_buildCategoryTree($allCategories, CategoryTreeBehaviour::ROOT_NODE_ID, $tree);
+        $this->_buildCategoryTree($allCategories, self::ROOT_NODE_ID, $tree);
         
         if( $returnRootNode == false )
         {
@@ -205,7 +205,7 @@ class ECategoryTreeBehaviour extends CActiveRecordBehavior
 			'urlName' => $allCategories[$node]['urlName'],
         );
 
-        if( $node == CategoryTreeBehaviour::ROOT_NODE_ID )
+        if( $node == self::ROOT_NODE_ID )
         {
             $result[count($result)-1]['expanded'] = true;
         }
@@ -228,7 +228,7 @@ class ECategoryTreeBehaviour extends CActiveRecordBehavior
 
         foreach($allCategories as $childItem)
         {
-            if( $childItem['parent'] == $node && $childItem['id'] != CategoryTreeBehaviour::ROOT_NODE_ID)
+            if( $childItem['parent'] == $node && $childItem['id'] != self::ROOT_NODE_ID)
             {
                 $this->_buildCategoryTree($allCategories, $childItem['id'], $result[count($result)-1]['children']);
             }
